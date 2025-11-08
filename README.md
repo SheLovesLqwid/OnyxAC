@@ -144,6 +144,8 @@ Each detector can be individually configured:
 - **entityWhitelistBlacklist**: Controls spawnable entities
 - **filePatternDetection**: Scans for cheat files
 
+# ADDING MORE SOON!!!!!!
+
 ## 🎮 Usage
 
 ### Admin Commands
