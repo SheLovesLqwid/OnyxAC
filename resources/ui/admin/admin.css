@@ -1,0 +1,251 @@
+/*
+    made by TheOGDev Founder/CEO of OGDev Studios LLC
+    OnyxAC - core script / module / resource
+    Description: OnyxAC is an open-source FiveM anti-cheat and admin toolset. Feel free to use,
+    rebrand, modify, and redistribute this project. Attribution is appreciated but not required.
+    If you redistribute or modify, please include credit to TheOGDev and link to:
+    https://github.com/SheLovesLqwid
+    WARNING: Attempting to claim this project as your own is discouraged. This file header must
+    remain at the top of every file in this repository.
+*/
+
+.player-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.2s;
+}
+
+.player-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-2px);
+}
+
+.player-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.player-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.player-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 5px;
+}
+
+.player-details {
+    display: flex;
+    gap: 15px;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.player-id {
+    background: #17a2b8;
+    padding: 2px 6px;
+    border-radius: 3px;
+    color: white;
+    font-weight: 500;
+}
+
+.player-ping {
+    color: #28a745;
+}
+
+.player-score {
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: 500;
+    color: white;
+}
+
+.player-score.low {
+    background: #28a745;
+}
+
+.player-score.medium {
+    background: #ffc107;
+    color: #212529;
+}
+
+.player-score.high {
+    background: #fd7e14;
+}
+
+.player-score.critical {
+    background: #dc3545;
+}
+
+.player-actions {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.action-btn-small {
+    padding: 5px 10px;
+    font-size: 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 500;
+}
+
+.action-btn-small.kick {
+    background: #ffc107;
+    color: #212529;
+}
+
+.action-btn-small.ban {
+    background: #dc3545;
+    color: white;
+}
+
+.action-btn-small.warn {
+    background: #fd7e14;
+    color: white;
+}
+
+.action-btn-small.tp {
+    background: #6f42c1;
+    color: white;
+}
+
+.action-btn-small.bring {
+    background: #20c997;
+    color: white;
+}
+
+.action-btn-small.freeze {
+    background: #6c757d;
+    color: white;
+}
+
+.action-btn-small.spectate {
+    background: #17a2b8;
+    color: white;
+}
+
+.action-btn-small:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.action-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.action-btn {
+    padding: 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s;
+    text-align: center;
+}
+
+.action-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+}
+
+.settings-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.setting-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.setting-item label {
+    font-weight: 500;
+    color: #ffffff;
+}
+
+.setting-item input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.setting-item input[type="number"] {
+    width: 80px;
+    padding: 5px 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    text-align: center;
+}
+
+.player-identifiers {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.identifier {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 10px;
+    margin-right: 5px;
+    margin-bottom: 3px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.no-players {
+    text-align: center;
+    padding: 40px;
+    color: rgba(255, 255, 255, 0.5);
+    font-style: italic;
+}
+
+.loading {
+    text-align: center;
+    padding: 40px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.loading::after {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #ff6b6b;
+    animation: spin 1s ease-in-out infinite;
+    margin-left: 10px;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

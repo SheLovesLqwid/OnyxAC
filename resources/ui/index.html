@@ -1,0 +1,126 @@
+/*
+    made by TheOGDev Founder/CEO of OGDev Studios LLC
+    OnyxAC - core script / module / resource
+    Description: OnyxAC is an open-source FiveM anti-cheat and admin toolset. Feel free to use,
+    rebrand, modify, and redistribute this project. Attribution is appreciated but not required.
+    If you redistribute or modify, please include credit to TheOGDev and link to:
+    https://github.com/SheLovesLqwid
+    WARNING: Attempting to claim this project as your own is discouraged. This file header must
+    remain at the top of every file in this repository.
+*/
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OnyxAC</title>
+    <link rel="stylesheet" href="shared/shared.css">
+    <link rel="stylesheet" href="admin/admin.css">
+    <link rel="stylesheet" href="anticheat/anticheat.css">
+</head>
+<body>
+    <div id="notification-container"></div>
+    <div id="announcement-container"></div>
+    
+    <!-- Admin Menu -->
+    <div id="admin-menu" class="menu-container" style="display: none;">
+        <div class="menu-header">
+            <h2>OnyxAC Admin Panel</h2>
+            <button id="close-admin" class="close-btn">&times;</button>
+        </div>
+        <div class="menu-content">
+            <div class="sidebar">
+                <button class="tab-btn active" data-tab="players">Players</button>
+                <button class="tab-btn" data-tab="actions">Quick Actions</button>
+                <button class="tab-btn" data-tab="settings">Settings</button>
+            </div>
+            <div class="main-content">
+                <div id="players-tab" class="tab-content active">
+                    <div class="search-container">
+                        <input type="text" id="player-search" placeholder="Search players...">
+                        <button id="refresh-players">Refresh</button>
+                    </div>
+                    <div id="player-list"></div>
+                </div>
+                <div id="actions-tab" class="tab-content">
+                    <div class="action-grid">
+                        <button class="action-btn" data-action="announce">Server Announcement</button>
+                        <button class="action-btn" data-action="restart-warning">Restart Warning</button>
+                        <button class="action-btn" data-action="clear-area">Clear Area</button>
+                        <button class="action-btn" data-action="weather">Change Weather</button>
+                    </div>
+                </div>
+                <div id="settings-tab" class="tab-content">
+                    <div class="settings-grid">
+                        <div class="setting-item">
+                            <label>Enable Chat Logging</label>
+                            <input type="checkbox" id="chat-logging">
+                        </div>
+                        <div class="setting-item">
+                            <label>Auto-Kick Threshold</label>
+                            <input type="number" id="kick-threshold" value="100">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Anti-Cheat Menu -->
+    <div id="ac-menu" class="menu-container" style="display: none;">
+        <div class="menu-header">
+            <h2>OnyxAC Control Panel</h2>
+            <button id="close-ac" class="close-btn">&times;</button>
+        </div>
+        <div class="menu-content">
+            <div class="sidebar">
+                <button class="tab-btn active" data-tab="detections">Live Detections</button>
+                <button class="tab-btn" data-tab="config">Configuration</button>
+                <button class="tab-btn" data-tab="bans">Ban Management</button>
+                <button class="tab-btn" data-tab="stats">Statistics</button>
+            </div>
+            <div class="main-content">
+                <div id="detections-tab" class="tab-content active">
+                    <div id="detection-list"></div>
+                </div>
+                <div id="config-tab" class="tab-content">
+                    <div id="detector-config"></div>
+                </div>
+                <div id="bans-tab" class="tab-content">
+                    <div class="ban-controls">
+                        <input type="text" id="ban-search" placeholder="Search bans...">
+                        <button id="refresh-bans">Refresh</button>
+                    </div>
+                    <div id="ban-list"></div>
+                </div>
+                <div id="stats-tab" class="tab-content">
+                    <div id="server-stats"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Dialog -->
+    <div id="modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Confirm Action</h3>
+                <button id="modal-close" class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="modal-message"></p>
+                <div id="modal-inputs"></div>
+            </div>
+            <div class="modal-footer">
+                <button id="modal-confirm" class="btn btn-primary">Confirm</button>
+                <button id="modal-cancel" class="btn btn-secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="shared/shared.js"></script>
+    <script src="admin/admin.js"></script>
+    <script src="anticheat/anticheat.js"></script>
+</body>
+</html>

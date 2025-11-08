@@ -1,0 +1,342 @@
+/*
+    made by TheOGDev Founder/CEO of OGDev Studios LLC
+    OnyxAC - core script / module / resource
+    Description: OnyxAC is an open-source FiveM anti-cheat and admin toolset. Feel free to use,
+    rebrand, modify, and redistribute this project. Attribution is appreciated but not required.
+    If you redistribute or modify, please include credit to TheOGDev and link to:
+    https://github.com/SheLovesLqwid
+    WARNING: Attempting to claim this project as your own is discouraged. This file header must
+    remain at the top of every file in this repository.
+*/
+
+.detection-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-left: 4px solid;
+    transition: all 0.2s;
+}
+
+.detection-card.critical {
+    border-left-color: #dc3545;
+    background: rgba(220, 53, 69, 0.1);
+}
+
+.detection-card.high {
+    border-left-color: #fd7e14;
+    background: rgba(253, 126, 20, 0.1);
+}
+
+.detection-card.medium {
+    border-left-color: #ffc107;
+    background: rgba(255, 193, 7, 0.1);
+}
+
+.detection-card.low {
+    border-left-color: #17a2b8;
+    background: rgba(23, 162, 184, 0.1);
+}
+
+.detection-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.detection-type {
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.detection-timestamp {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.detection-player {
+    font-size: 14px;
+    color: #ff6b6b;
+    margin-bottom: 8px;
+}
+
+.detection-details {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.8);
+    background: rgba(0, 0, 0, 0.2);
+    padding: 8px;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+}
+
+.detector-config-item {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.detector-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.detector-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.detector-toggle {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
+
+.detector-toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 24px;
+}
+
+.toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .toggle-slider {
+    background-color: #ff6b6b;
+}
+
+input:checked + .toggle-slider:before {
+    transform: translateX(26px);
+}
+
+.detector-settings {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+}
+
+.setting-input {
+    display: flex;
+    flex-direction: column;
+}
+
+.setting-input label {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 5px;
+}
+
+.setting-input input {
+    padding: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    font-size: 14px;
+}
+
+.ban-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ban-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.ban-player {
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.ban-id {
+    background: #6c757d;
+    padding: 2px 6px;
+    border-radius: 3px;
+    color: white;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.ban-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.ban-detail {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.ban-detail strong {
+    color: #ffffff;
+}
+
+.ban-reason {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 10px;
+}
+
+.ban-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.unban-btn {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.2s;
+}
+
+.unban-btn:hover {
+    background: #218838;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.stat-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    color: white;
+}
+
+.stat-value {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.chart-container {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.chart-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.no-detections {
+    text-align: center;
+    padding: 40px;
+    color: rgba(255, 255, 255, 0.5);
+    font-style: italic;
+}
+
+.detection-severity-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 8px;
+}
+
+.detection-severity-indicator.critical {
+    background: #dc3545;
+    box-shadow: 0 0 8px rgba(220, 53, 69, 0.5);
+}
+
+.detection-severity-indicator.high {
+    background: #fd7e14;
+    box-shadow: 0 0 8px rgba(253, 126, 20, 0.5);
+}
+
+.detection-severity-indicator.medium {
+    background: #ffc107;
+    box-shadow: 0 0 8px rgba(255, 193, 7, 0.5);
+}
+
+.detection-severity-indicator.low {
+    background: #17a2b8;
+    box-shadow: 0 0 8px rgba(23, 162, 184, 0.5);
+}
+
+.filter-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 8px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 12px;
+}
+
+.filter-btn.active {
+    background: #ff6b6b;
+    border-color: #ff6b6b;
+}
+
+.filter-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}

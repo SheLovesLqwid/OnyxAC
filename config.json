@@ -1,0 +1,557 @@
+{
+    "general": {
+        "resourceName": "OnyxAC",
+        "version": "1.0.0",
+        "enableDebugMode": false,
+        "enablePerformanceMetrics": true,
+        "maxPlayersToMonitor": 128
+    },
+    "database": {
+        "enabled": true,
+        "connectionString": "mysql://user:password@localhost/onyxac",
+        "tablePrefix": "onyxac_",
+        "enableAutoMigration": true,
+        "connectionTimeout": 10000
+    },
+    "connectionRequirements": {
+        "requireSteam": true,
+        "requireDiscord": false,
+        "requireAlphanumericName": true,
+        "minNameLength": 3,
+        "maxNameLength": 32,
+        "allowedNameCharacters": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-[](){}|<>@#$%^&*+=~`",
+        "bannedNamePatterns": ["admin", "moderator", "owner", "console", "system", "server"]
+    },
+    "detectors": {
+        "antiTeleport": {
+            "enabled": true,
+            "maxDistance": 500.0,
+            "maxDistanceVehicle": 1000.0,
+            "exemptInteriors": true,
+            "exemptCutscenes": true,
+            "scoreWeight": 15
+        },
+        "antiNoclip": {
+            "enabled": true,
+            "checkInterval": 1000,
+            "maxVelocityThreshold": 50.0,
+            "scoreWeight": 20
+        },
+        "antiInvisible": {
+            "enabled": true,
+            "checkInterval": 2000,
+            "scoreWeight": 25
+        },
+        "antiGodmode": {
+            "enabled": true,
+            "checkInterval": 3000,
+            "damageThreshold": 100.0,
+            "scoreWeight": 30
+        },
+        "antiWeaponModifier": {
+            "enabled": true,
+            "checkDamageModifier": true,
+            "checkRangeModifier": true,
+            "checkAmmoModifier": true,
+            "maxDamageMultiplier": 2.0,
+            "scoreWeight": 20
+        },
+        "antiSuperJump": {
+            "enabled": true,
+            "maxJumpHeight": 5.0,
+            "scoreWeight": 10
+        },
+        "antiFreecam": {
+            "enabled": true,
+            "checkInterval": 1500,
+            "scoreWeight": 15
+        },
+        "antiSpectate": {
+            "enabled": true,
+            "allowStaffSpectate": true,
+            "scoreWeight": 20
+        },
+        "antiVehicleModifier": {
+            "enabled": true,
+            "maxSpeedMultiplier": 2.5,
+            "checkEngineMultiplier": true,
+            "checkTorqueMultiplier": true,
+            "scoreWeight": 15
+        },
+        "antiDuplicateConnection": {
+            "enabled": true,
+            "action": "kick",
+            "maxConnectionsPerLicense": 1,
+            "maxConnectionsPerIP": 3,
+            "scoreWeight": 50
+        },
+        "antiExplosion": {
+            "enabled": true,
+            "useBlacklist": true,
+            "scoreWeight": 25
+        },
+        "entityWhitelistBlacklist": {
+            "enabled": true,
+            "useWhitelist": false,
+            "useBlacklist": true,
+            "scoreWeight": 30
+        },
+        "filePatternDetection": {
+            "enabled": true,
+            "scanInterval": 30000,
+            "patterns": ["x64", "ai_", "cheat", "mod_menu", "trainer"],
+            "scoreWeight": 40
+        }
+    },
+    "scoringEngine": {
+        "enabled": true,
+        "autoDecayEnabled": true,
+        "decayRate": 1,
+        "decayInterval": 300000,
+        "thresholds": {
+            "warning": 50,
+            "kick": 100,
+            "tempBan": 150,
+            "permanentBan": 200
+        },
+        "autoBanEnabled": true,
+        "maxScoreBeforeAction": 200
+    },
+    "banManager": {
+        "enabled": true,
+        "defaultBanDuration": 1440,
+        "maxBanDuration": 525600,
+        "enableBanSync": false,
+        "banSyncURL": "https://your-ban-sync-server.com/api",
+        "banSyncAPIKey": "your-api-key-here",
+        "banSyncHMACSecret": "your-hmac-secret-here",
+        "syncInterval": 300000
+    },
+    "permissions": {
+        "roles": {
+            "developer": {
+                "level": 1000,
+                "commands": ["*"],
+                "permissions": {
+                    "kick": true,
+                    "ban": true,
+                    "unban": true,
+                    "tp": true,
+                    "bring": true,
+                    "freeze": true,
+                    "spectate": true,
+                    "revive": true,
+                    "heal": true,
+                    "announce": true,
+                    "checkscore": true,
+                    "clearinfractions": true,
+                    "setpermissions": true,
+                    "managestaff": true,
+                    "serverconfig": true,
+                    "database": true,
+                    "logs": true
+                },
+                "canAccessAdminUI": true,
+                "canAccessACUI": true,
+                "canBypassDetections": true,
+                "description": "Full system access - developers only"
+            },
+            "ownership": {
+                "level": 900,
+                "commands": ["*"],
+                "permissions": {
+                    "kick": true,
+                    "ban": true,
+                    "unban": true,
+                    "tp": true,
+                    "bring": true,
+                    "freeze": true,
+                    "spectate": true,
+                    "revive": true,
+                    "heal": true,
+                    "announce": true,
+                    "checkscore": true,
+                    "clearinfractions": true,
+                    "setpermissions": true,
+                    "managestaff": true,
+                    "serverconfig": true
+                },
+                "canAccessAdminUI": true,
+                "canAccessACUI": true,
+                "canBypassDetections": true,
+                "description": "Server ownership level"
+            },
+            "head_of_mgmt": {
+                "level": 800,
+                "commands": ["acban", "acunban", "kick", "warn", "tp", "bring", "freeze", "spectate", "revive", "heal", "announce", "checkscore", "clearinfractions", "setpermissions"],
+                "permissions": {
+                    "kick": true,
+                    "ban": true,
+                    "unban": true,
+                    "tp": true,
+                    "bring": true,
+                    "freeze": true,
+                    "spectate": true,
+                    "revive": true,
+                    "heal": true,
+                    "announce": true,
+                    "checkscore": true,
+                    "clearinfractions": true,
+                    "setpermissions": true,
+                    "managestaff": true
+                },
+                "canAccessAdminUI": true,
+                "canAccessACUI": true,
+                "canBypassDetections": true,
+                "description": "Head of Management"
+            },
+            "sr_mgmt": {
+                "level": 750,
+                "commands": ["acban", "acunban", "kick", "warn", "tp", "bring", "freeze", "spectate", "revive", "heal", "announce", "checkscore", "clearinfractions"],
+                "permissions": {
+                    "kick": true,
+                    "ban": true,
+                    "unban": true,
+                    "tp": true,
+                    "bring": true,
+                    "freeze": true,
+                    "spectate": true,
+                    "revive": true,
+                    "heal": true,
+                    "announce": true,
+                    "checkscore": true,
+                    "clearinfractions": true
+                },
+                "canAccessAdminUI": true,
+                "canAccessACUI": true,
+                "canBypassDetections": true,
+                "description": "Senior Management"
+            },
+            "mgmt": {
+                "level": 700,
+                "commands": ["acban", "acunban", "kick", "warn", "tp", "bring", "freeze", "spectate", "revive", "heal", "announce", "checkscore", "clearinfractions"],
+                "permissions": {
+                    "kick": true,
+                    "ban": true,
+                    "unban": true,
+                    "tp": true,
+                    "bring": true,
+                    "freeze": true,
+                    "spectate": true,
+                    "revive": true,
+                    "heal": true,
+                    "announce": true,
+                    "checkscore": true,
+                    "clearinfractions": true
+                },
+                "canAccessAdminUI": true,
+                "canAccessACUI": true,
+                "canBypassDetections": true,
+                "description": "Management"
+            },
+            "jr_mgmt": {
+                "level": 650,
+                "commands": ["kick", "warn", "tp", "bring", "freeze", "spectate", "revive", "heal", "announce", "checkscore"],
+                "permissions": {
+                    "kick": true,
+                    "ban": false,
+                    "unban": false,
+                    "tp": true,
+                    "bring": true,
+                    "freeze": true,
+                    "spectate": true,
+                    "revive": true,
+                    "heal": true,
+                    "announce": true,
+                    "checkscore": true
+                },
+                "canAccessAdminUI": true,
+                "canAccessACUI": true,
+                "canBypassDetections": true,
+                "description": "Junior Management"
+            },
+            "trial_mgmt": {
+                "level": 600,
+                "commands": ["kick", "warn", "tp", "bring", "freeze", "spectate", "revive", "heal", "checkscore"],
+                "permissions": {
+                    "kick": true,
+                    "ban": false,
+                    "unban": false,
+                    "tp": true,
+                    "bring": true,
+                    "freeze": true,
+                    "spectate": true,
+                    "revive": true,
+                    "heal": true,
+                    "checkscore": true
+                },
+                "canAccessAdminUI": true,
+                "canAccessACUI": true,
+                "canBypassDetections": false,
+                "description": "Trial Management"
+            },
+            "sr_head_admin": {
+                "level": 550,
+                "commands": ["kick", "warn", "tp", "bring", "freeze", "spectate", "revive", "heal", "announce", "checkscore"],
+                "permissions": {
+                    "kick": true,
+                    "ban": false,
+                    "unban": false,
+                    "tp": true,
+                    "bring": true,
+                    "freeze": true,
+                    "spectate": true,
+                    "revive": true,
+                    "heal": true,
+                    "announce": true,
+                    "checkscore": true
+                },
+                "canAccessAdminUI": true,
+                "canAccessACUI": true,
+                "canBypassDetections": false,
+                "description": "Senior Head Admin"
+            },
+            "head_admin": {
+                "level": 500,
+                "commands": ["kick", "warn", "tp", "bring", "freeze", "spectate", "revive", "heal", "checkscore"],
+                "permissions": {
+                    "kick": true,
+                    "ban": false,
+                    "unban": false,
+                    "tp": true,
+                    "bring": true,
+                    "freeze": true,
+                    "spectate": true,
+                    "revive": true,
+                    "heal": true,
+                    "checkscore": true
+                },
+                "canAccessAdminUI": true,
+                "canAccessACUI": false,
+                "canBypassDetections": false,
+                "description": "Head Admin"
+            },
+            "admin": {
+                "level": 450,
+                "commands": ["kick", "warn", "tp", "bring", "freeze", "spectate", "revive", "heal", "checkscore"],
+                "permissions": {
+                    "kick": true,
+                    "ban": false,
+                    "unban": false,
+                    "tp": true,
+                    "bring": true,
+                    "freeze": true,
+                    "spectate": true,
+                    "revive": true,
+                    "heal": true,
+                    "checkscore": true
+                },
+                "canAccessAdminUI": true,
+                "canAccessACUI": false,
+                "canBypassDetections": false,
+                "description": "Admin"
+            },
+            "jr_admin": {
+                "level": 400,
+                "commands": ["kick", "warn", "tp", "bring", "freeze", "spectate", "revive", "heal"],
+                "permissions": {
+                    "kick": true,
+                    "ban": false,
+                    "unban": false,
+                    "tp": true,
+                    "bring": true,
+                    "freeze": true,
+                    "spectate": true,
+                    "revive": true,
+                    "heal": true
+                },
+                "canAccessAdminUI": true,
+                "canAccessACUI": false,
+                "canBypassDetections": false,
+                "description": "Junior Admin"
+            },
+            "head_mod": {
+                "level": 350,
+                "commands": ["kick", "warn", "tp", "bring", "freeze", "spectate"],
+                "permissions": {
+                    "kick": true,
+                    "ban": false,
+                    "unban": false,
+                    "tp": true,
+                    "bring": true,
+                    "freeze": true,
+                    "spectate": true
+                },
+                "canAccessAdminUI": true,
+                "canAccessACUI": false,
+                "canBypassDetections": false,
+                "description": "Head Moderator"
+            },
+            "sr_mod": {
+                "level": 300,
+                "commands": ["kick", "warn", "tp", "bring", "freeze", "spectate"],
+                "permissions": {
+                    "kick": true,
+                    "ban": false,
+                    "unban": false,
+                    "tp": true,
+                    "bring": true,
+                    "freeze": true,
+                    "spectate": true
+                },
+                "canAccessAdminUI": true,
+                "canAccessACUI": false,
+                "canBypassDetections": false,
+                "description": "Senior Moderator"
+            },
+            "moderator": {
+                "level": 250,
+                "commands": ["kick", "warn", "tp", "bring", "freeze"],
+                "permissions": {
+                    "kick": true,
+                    "ban": false,
+                    "unban": false,
+                    "tp": true,
+                    "bring": true,
+                    "freeze": true
+                },
+                "canAccessAdminUI": true,
+                "canAccessACUI": false,
+                "canBypassDetections": false,
+                "description": "Moderator"
+            },
+            "mod": {
+                "level": 200,
+                "commands": ["warn", "tp", "bring"],
+                "permissions": {
+                    "kick": false,
+                    "ban": false,
+                    "unban": false,
+                    "tp": true,
+                    "bring": true,
+                    "freeze": false
+                },
+                "canAccessAdminUI": true,
+                "canAccessACUI": false,
+                "canBypassDetections": false,
+                "description": "Mod"
+            },
+            "trial": {
+                "level": 100,
+                "commands": ["warn"],
+                "permissions": {
+                    "kick": false,
+                    "ban": false,
+                    "unban": false,
+                    "tp": false,
+                    "bring": false,
+                    "freeze": false
+                },
+                "canAccessAdminUI": true,
+                "canAccessACUI": false,
+                "canBypassDetections": false,
+                "description": "Trial Staff"
+            }
+        },
+        "defaultRole": "player",
+        "useFiveMLicenses": true,
+        "allowIndividualPermissions": true,
+        "staffLicenses": {
+            "license:example1234567890abcdef": "developer",
+            "license:example0987654321fedcba": "ownership"
+        }
+    },
+    "logging": {
+        "enableFileLogging": true,
+        "enableDatabaseLogging": true,
+        "enableDiscordLogging": true,
+        "logLevel": "info",
+        "logPlayerIPs": false,
+        "logPlayerIdentifiers": true,
+        "hashSensitiveData": true,
+        "retentionDays": 30,
+        "logCategories": {
+            "detections": true,
+            "bans": true,
+            "kicks": true,
+            "warnings": true,
+            "adminActions": true,
+            "connections": true,
+            "errors": true
+        }
+    },
+    "discord": {
+        "enabled": true,
+        "webhookURL": "https://discord.com/api/webhooks/your-webhook-url",
+        "retryAttempts": 3,
+        "retryDelay": 5000,
+        "embedColors": {
+            "detection": 16776960,
+            "ban": 16711680,
+            "unban": 65280,
+            "kick": 16753920,
+            "warning": 16776960,
+            "info": 3447003,
+            "error": 16711680,
+            "success": 65280
+        },
+        "enableMentions": false,
+        "mentionRoleID": "your-role-id-here"
+    },
+    "ui": {
+        "keybinds": {
+            "adminMenu": "F6",
+            "anticheatMenu": "F7"
+        },
+        "themes": {
+            "default": "dark",
+            "available": ["dark", "light", "blue"]
+        },
+        "enableSounds": true,
+        "enableAnimations": true,
+        "refreshInterval": 5000
+    },
+    "adminCommands": {
+        "enabled": true,
+        "enableChatFeedback": true,
+        "enableDiscordLogging": true,
+        "cooldowns": {
+            "tp": 1000,
+            "bring": 1000,
+            "heal": 2000,
+            "revive": 3000,
+            "slap": 5000
+        }
+    },
+    "whitelists": {
+        "entities": [],
+        "particles": [],
+        "explosions": []
+    },
+    "blacklists": {
+        "entities": [
+            "WEAPON_RAILGUN",
+            "WEAPON_MINIGUN",
+            "VEHICLE_HYDRA",
+            "VEHICLE_LAZER"
+        ],
+        "particles": [
+            "scr_xs_dr",
+            "scr_xs_props"
+        ],
+        "explosions": [
+            29,
+            30,
+            31,
+            32
+        ]
+    },
+    "bypass": {
+        "enableAutoBypass": false,
+        "bypassMethods": {
+            "teleportBypass": false,
+            "godmodeBypass": false,
+            "weaponBypass": false
+        }
+    }
+}
